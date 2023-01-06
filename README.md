@@ -1,15 +1,49 @@
 # WhatsApp-Proxy
 Configuring WhatsApp proxy using cloud-init on ubuntu
 
-Deploy a Cisco AnyConnect compactable ocserv server on Linux (Tested on Ubuntu)</br>
-This project is heavely inspired from the github user <a href='https://github.com/sfc9982'> sfc9982 </a> project. </br></br>
-For this you need two servers, one in Iran and the other outside of Iran.</br>
-you can google it or using websites like [Sindad](https://sindad.com/) or [Mihan Webhost](https://mihanwebhost.com/) or any other services you like.</br>
-Note: You don't need anything fancy, even the most basic and simple plans of the VPS's will do the magic.</br>
-For the foreign server I'd recommend [Digital Ocean](https://www.digitalocean.com/) or something that will give you VP's hourly.
-<hr>
-Your server inside Iran will act as a router. It's only job is to route traffic from within the country to the main server (non-IR) which hosts the actual ocserv. </br>
-All commands are base on debian-based linux distros. e.g. Ubuntu.</br></br>
+Deploy a Whatsapp proxy server on Linux (Tested on Ubuntu)</br></br>
+For this you need a VPS Service that gives you `cloud-init` feature.</br></br>
+For example, [Digital Ocean](https://www.digitalocean.com/) has cloud-init feature called `Add Initialization scripts`
+Note: You can start with the most basic VPS.</br></br>
 Share it with your loved ones</br></br>
 <bold>#MahsaAmini</bold></br>
 <bold>#womanlifefreedom</bold></br></br>
+<hr>
+
+I'm going to walk you through installing this proxy. </br>
+for the sake of simplicity, I'm using digital ocean.</br></br>
+
+## Digital Ocean </br>
+
+&nbsp;&nbsp; 1. Login to digital ocean</br>
+&nbsp;&nbsp; 2. In Droplets > Create Droplets</br>
+&nbsp;&nbsp; 3. After choosing the location, ubuntu version, resources, ... click on the `Advanced Options` and check the `Add Initialization scripts (free)`.</br>
+&nbsp;&nbsp; 4. Now copy/paste the code below.</br>
+#### 5. whatsapp.yaml </br>
+```shell script
+#cloud-config
+
+package_update: true
+package_upgrade: true
+
+packages:
+ - ca-certificates
+ - curl
+ - gnupg
+ - lsb-release
+ - git
+ 
+runcmd:
+  - sudo mkdir -p /etc/apt/keyrings
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  - sudo apt-get update
+  - sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+  - git clone https://github.com/WhatsApp/proxy.git $HOME/whatsapp-proxy
+  - docker compose -f $HOME/whatsapp-proxy/proxy/ops/docker-compose.yml up -d
+``` 
+</br>
+&nbsp;&nbsp; 6. Click on `Create Droplet`</br>
+&nbsp;&nbsp; 7. Now all you need to do is copy the `IPv4` from you server and paste it into the whatsapp `setting`.</br>
+
+And it's done. :)
