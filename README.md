@@ -45,5 +45,8 @@ runcmd:
 </br>
 6. Click on `Create Droplet`</br>
 7. Now all you need to do is copy the `IPv4` from you server and paste it into the whatsapp `setting`.</br></br>
-
-And it's done. :)
+8. Just give it a minute so the script execute. Now, if you wanna check your logs you can use the command below</bt>
+```shell script
+tail -f /var/log/cloud-init-output.log
+```
+And that's it. :)
