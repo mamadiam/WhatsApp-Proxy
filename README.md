@@ -44,11 +44,10 @@ runcmd:
 ``` 
 </br>
 6. Click on `Create Droplet`</br>
-7. Now all you need to do is copy the `IPv4` from you server and paste it into the whatsapp `setting`.</br>
-8. Just give it a minute so the script execute.</br>
-9. Now log into the server.</br>
+7. Just give it a minute so the script execute.</br>
+8. Now log into the server.</br>
 
-#### 10.  Run the following command 
+#### 9.  Run the following command 
 ```shell script
 tail -f /var/log/cloud-init-output.log
 ``` 
@@ -59,5 +58,6 @@ If you don't want it to expose on ports 80, 443 before you run the script naviga
 ```shell script
 cd ~/whatsapp-proxy/proxy/ops/docker-compose.yml
 ```
-
+</br> 
+11. Now, go to whatsapp and put your IPv4 address + port into the proxy section.</br>
 And that's it. :)
