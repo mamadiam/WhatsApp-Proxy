@@ -53,7 +53,7 @@ tail -f /var/log/cloud-init-output.log
 ``` 
 </br>
 By default, it will run the proxy on ports: 80, 443, and 5222. </br>
-If you don't want it to expose on ports 80, 443 before you run the script navigate to this directory and change the ports in `docker-compose` file.</br>
+If you don't want it to expose on ports 80, 443 before you run the script navigate to this directory and change the ports in docker-compose file.</br>
 
 ```shell script
 cd ~/whatsapp-proxy/proxy/ops/docker-compose.yml
