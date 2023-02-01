@@ -61,3 +61,9 @@ cd ~/whatsapp-proxy/proxy/ops/docker-compose.yml
 </br> 
 11. Now, go to whatsapp and put your IPv4 address + port into the proxy section.</br>
 And that's it. :)
+</br></br>
+Just in case you want to support me, I'd realy appriciate it.</br></br>
+
+TRC20 `TT2AMeebAUGFcG9jLPA49xN1eMCyDekz6c` </br>
+
+ERC20 `0x9A6471A8d01A66e81433d97aF3e1288f7C2E6a7b`
